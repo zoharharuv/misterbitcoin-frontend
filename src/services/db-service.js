@@ -1,6 +1,6 @@
 'use strict';
 
-import {Utils} from './utils.service.js';
+import { Utils } from './utils.service.js';
 
 export const DbService = {
     query,
@@ -13,10 +13,10 @@ export const DbService = {
 
 const ID_FIELD = '_id';
 
-function query(collectionName) {
-    var collection = Utils.loadFromStorage(collectionName);
+async function query(collectionName) {
+    var collection = await Utils.loadFromStorage(collectionName);
     if (!collection) collection = [];
-    return Promise.resolve(collection);
+    return collection;
 }
 
 async function get(collectionName, id) {
@@ -29,7 +29,7 @@ async function remove(collectionName, id) {
     var idx = collection.findIndex(curr => curr[ID_FIELD] === id);
     if (idx === -1) throw new Error('something went wrong');
     collection.splice(idx, 1);
-    
+
     Utils.storeToStorage(collectionName, collection);
     return Promise.resolve();
 }
@@ -57,9 +57,12 @@ async function put(collectionName, item) {
 
 async function insert(collectionName, items) {
     var collection = await query(collectionName);
-    items.forEach(curr => curr[ID_FIELD] = Utils.getRandomId());
-    collection.push(...items);
-    
+    if (Array.isArray(items)) {
+        items.forEach(curr => curr[ID_FIELD] = Utils.getRandomId());
+        collection.push(...items);
+    } else {
+        collection.push(items);
+    }
     Utils.storeToStorage(collectionName, collection);
-    return Promise.resolve();
+    return collection;
 }

@@ -1,19 +1,17 @@
 <template>
-  <section @click.stop="sayHey" class="contact-preview">
+  <section class="contact-preview">
+    <img :src="`https://robohash.org/${contact.name}`" alt="" srcset="">
     <pre>{{ contact }}</pre>
     <hr />
-    <router-link :to="`/contact/${contact._id}`">Details</router-link>
+    <router-link :to="`/contact/${contact._id}`">{{contact.name}} profile</router-link>
   </section>
 </template>
 
 <script>
 export default {
-  name: "contact-preview",
   props: ["contact"],
   methods: {
-    sayHey() {
-      console.log("Hey");
-    },
+    
   },
 };
 </script>

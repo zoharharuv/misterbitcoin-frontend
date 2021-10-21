@@ -25,20 +25,17 @@ const routes = [
   {
     path: '/contact/:contactId',
     name: 'ContactDetails',
-    component: contactDetails
+    component: contactDetails,
+  },
+  {
+    path: '/contact/edit/:contactId',
+    name: 'ContactEdit',
+    component: contactEdit
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: contactApp,
-    children: [
-      {
-        // path: 'edit/:id?',
-        path: 'edit',
-        name: 'contact-edit',
-        component: contactEdit
-      }
-    ]
+    component: contactApp
   }
 ]
 

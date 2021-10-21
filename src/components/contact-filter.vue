@@ -3,7 +3,7 @@
     <input
       @input="filter"
       type="text"
-      placeholder="search"
+      placeholder="Search contacts"
       v-model="filterBy.searchStr"
     />
   </form>
@@ -11,7 +11,6 @@
 
 <script>
 export default {
-  name: "contact-filter",
   data() {
     return {
       filterBy: {

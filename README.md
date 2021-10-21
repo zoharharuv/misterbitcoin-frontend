@@ -1,4 +1,4 @@
-# cars
+# mister-bitcoin
 
 ## Project setup
 ```

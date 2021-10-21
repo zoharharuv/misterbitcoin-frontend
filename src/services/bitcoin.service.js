@@ -12,13 +12,11 @@ export default {
 async function getRate(coins) {
     const KEY = 'rate';
     var rate = await DbService.query(KEY);
-    console.log(rate);
     if (!rate || !rate.length) {
-        rate = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1');
-        console.log("🚀 ~ file: bitcoin.service.js ~ line 10 ~ getRate ~ rate", rate)
-        await DbService.insert(KEY, rate);
+        const res = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1');
+        rate = await DbService.insert(KEY, res.data);
     }
-    return rate;
+    return rate[0];
 }
 
 async function getMarketPrice() {

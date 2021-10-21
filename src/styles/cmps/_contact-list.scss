@@ -1,0 +1,16 @@
+.contact-list {
+    gap: 20px;
+    .contact-container {
+        outline: 1px solid grey;
+        padding: 5px;
+        width: 300px;
+        gap: 10px;
+        .contact-actions {
+            button {
+                border-radius: 4px;
+                background-color: grey;
+                padding: 2px 4px;
+            }
+        }
+    }
+}

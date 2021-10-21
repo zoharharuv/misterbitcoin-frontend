@@ -2,7 +2,6 @@
   <section class="contact-app flex column align-center">
     <contact-filter @filterList="setFilter" />
     <contact-list @remove="removeContact" :contacts="contactsToShow" />
-    <router-link to="/contact/edit">Add contact</router-link>
     <router-view />
   </section>
 </template>
@@ -37,23 +36,23 @@ export default {
 
   methods: {
     async saveContact(contact) {
-      const savedContact = await contactService.save(contact);
-      this.contacts.push(savedContact);
+      await contactService.save(contact);
+      this.$router.push("/contact");
     },
     async removeContact(id) {
       await contactService.remove(id);
       var idx = this.contacts.findIndex((contact) => contact._id === id);
       this.contacts.splice(idx, 1);
     },
-    popup(msg) {
-      alert(msg);
-    },
     setFilter(filterBy) {
       this.filterBy = filterBy;
     },
+    async loadContacts() {
+      this.contacts = await contactService.query();
+    },
   },
   async created() {
-    this.contacts = await contactService.query();
+    this.loadContacts();
     eventBus.$on("contactSaved", this.saveContact);
   },
   components: {

@@ -58,7 +58,6 @@ function _createDefaultContacts() {
 
 function _createContact(name, email, phone) {
     return {
-        _id: 'c' + (Date.now() % 1000),
         name,
         email,
         phone

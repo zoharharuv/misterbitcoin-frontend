@@ -1,8 +1,11 @@
 <template>
-  <section class="contact-details" v-if="contact">
-    <h1>Contact Details - {{ contact.name }}</h1>
-    <router-link :to="`/contact/${nextContactId}`">Next Contact</router-link>
+  <section class="contact-details flex column gap align-center" v-if="contact">
+    <h1>{{ contact.name }} profile</h1>
     <pre>{{ contact }}</pre>
+    <div class="contact-links flex gap">
+      <router-link to="/contact">Back</router-link>
+      <router-link :to="`/contact/edit/${contact._id}`">Edit profile</router-link>
+    </div>
   </section>
 </template>
 
@@ -13,14 +16,12 @@ export default {
   data() {
     return {
       contact: null,
-      nextContactId: "xxx",
     };
   },
   created() {
     this.loadContact();
   },
   destroyed() {
-    console.log("Contact Details Destroyed");
   },
   methods: {
     async loadContact() {
