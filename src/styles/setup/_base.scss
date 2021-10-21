@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'sofia-regular';
+    background-color: $clr1;
+    color: $clr2;
+}
+
+a,
+button,
+input{
+    color: inherit;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+input{
+    cursor: text;
+}

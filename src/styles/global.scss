@@ -1,0 +1,22 @@
+/*  SETUP  */
+@import './setup/typography.scss';
+@import './setup/variables.scss';
+@import './setup/base.scss';
+@import './setup/helpers.scss';
+@import './setup/mixins.scss';
+
+// CMPS
+@import './cmps/app-header';
+@import './cmps/user-msg';
+@import './cmps/chart';
+@import './cmps/contact-list';
+@import './cmps/contact-edit';
+@import './cmps/contact-preview';
+@import './cmps/contact-filter';
+
+// PAGES
+@import './pages/home-page';
+@import './pages/statistics-page';
+@import './pages/contact-app';
+@import './pages/contact-details';
+
