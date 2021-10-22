@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import homePage from '../pages/home-page.vue'
 import statisticsPage from '../pages/statistics-page.vue'
+import signupPage from '../pages/signup-page.vue'
 import contactDetails from '../pages/contact-details.vue'
 import contactApp from '../pages/contact-app.vue';
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/statistics',
     name: 'Statistics',
     component: statisticsPage
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: signupPage
   },
   {
     path: '/contact/:contactId',

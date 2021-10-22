@@ -27,7 +27,6 @@ export default {
     async loadContact() {
       try {
         const { contactId } = this.$route.params;
-        console.log("Contact Details Created", contactId);
         this.contact = await contactService.get(contactId);
       } catch (err) {
         showUserMsg("No such Contact", "danger");

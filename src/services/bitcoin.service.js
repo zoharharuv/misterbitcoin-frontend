@@ -11,9 +11,10 @@ export default {
 
 async function getRate(coins) {
     const KEY = 'rate';
+    const API_URL = 'https://blockchain.info/tobtc?currency=USD&value=1'
     var rate = await DbService.query(KEY);
     if (!rate || !rate.length) {
-        const res = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1');
+        const res = await axios.get(API_URL);
         rate = await DbService.insert(KEY, res.data);
     }
     return rate[0];
@@ -21,25 +22,23 @@ async function getRate(coins) {
 
 async function getMarketPrice() {
     const KEY = 'marketprice';
-    var marketPrice = await DbService.query(KEY);
-    console.log(marketPrice);
-    if (!marketPrice || !marketPrice.length) {
-        marketPrice = await axios.get('https://api.blockchain.info/charts/market-price?timespan=2months&format=json&cors=true');
-        console.log("🚀 ~ file: bitcoin.service.js ~ line 30 ~ getMarketPrice ~ marketPrice", marketPrice)
-        await DbService.insert(KEY, marketPrice);
+    const API_URL = 'https://api.blockchain.info/charts/market-price?timespan=1months&format=json&cors=true'
+    var marketprice = await DbService.query(KEY);
+    if (!marketprice || !marketprice.length) {
+        const res = await axios.get(API_URL);
+        marketprice = await DbService.insert(KEY, res.data);
     }
-    return marketPrice;
+    return marketprice[0];
 }
 
 async function getConfirmedTransactions() {
     const KEY = 'confirmedtransactions';
-    var confirmedTransactions = await DbService.query(KEY);
-    console.log(confirmedTransactions);
-    if (!confirmedTransactions || !confirmedTransactions.length) {
-        confirmedTransactions = await axios.get('https://api.blockchain.info/charts/trade-volume?timespan=2months&format=json&cors=true');
-        console.log("🚀 ~ file: bitcoin.service.js ~ line 42 ~ getConfirmedTransactions ~ ConfirmedTransactions", confirmedTransactions)
-        await DbService.insert(KEY, confirmedTransactions);
+    const API_URL = 'https://api.blockchain.info/charts/trade-volume?timespan=1months&format=json&cors=true'
+    var confirmedtransactions = await DbService.query(KEY);
+    if (!confirmedtransactions || !confirmedtransactions.length) {
+        const res = await axios.get(API_URL);
+        confirmedtransactions = await DbService.insert(KEY, res.data);
     }
-    return confirmedTransactions;
+    return confirmedtransactions[0];
 }
 

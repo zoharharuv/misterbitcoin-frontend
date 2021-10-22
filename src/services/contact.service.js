@@ -14,7 +14,6 @@ export default {
 
 async function query() {
     var contacts = await DbService.query(KEY);
-    console.log(contacts);
     if (!contacts || !contacts.length) {
         contacts = _createDefaultContacts();
         await DbService.insert(KEY, contacts);

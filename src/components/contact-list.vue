@@ -1,8 +1,8 @@
 <template>
-  <ul class="contact-list clean flex align-center justify-center wrap column">
-    <li class="contact-container flex column" v-for="(contact, idx) in contacts" :key="idx">
+  <ul class="contact-list clean flex align-center justify-center column">
+    <li class="contact-container flex space-between align-center" v-for="(contact, idx) in contacts" :key="idx">
       <contact-preview :contact="contact" />
-      <div class="contact-actions flex space-between align-center">
+      <div class="contact-actions flex gap align-center">
         <button @click="printContact(contact, $event)">Print Log</button>
         <button @click="remove(contact._id)">Remove</button>
       </div>

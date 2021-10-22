@@ -46,6 +46,7 @@ async function post(collectionName, item) {
 
 async function put(collectionName, item) {
     var collection = await query(collectionName);
+    console.log("🚀 ~ file: db-service.js ~ line 49 ~ put ~ collection", collection)
 
     let idx = collection.findIndex(curr => curr[ID_FIELD] === item[ID_FIELD]);
     if (idx === -1) throw new Error('something went wrong');

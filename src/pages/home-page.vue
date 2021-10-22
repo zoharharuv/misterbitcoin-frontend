@@ -13,6 +13,7 @@
 
 <script>
 import userService from "../services/user.service";
+import eventBus from "../services/eventBus.service.js";
 import bitcoinService from "../services/bitcoin.service";
 
 export default {
@@ -24,7 +25,12 @@ export default {
   },
   async created() {
     this.user = await userService.getUser();
+    if(!this.user){
+      this.$router.push("/signup");
+      return
+    }
     this.rate = await bitcoinService.getRate();
+    eventBus.$on("logout", () => this.user = null);
   },
   methods: {},
   computed: {

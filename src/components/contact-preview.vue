@@ -1,8 +1,6 @@
 <template>
-  <section class="contact-preview">
+  <section class="contact-preview flex align-center">
     <img :src="`https://robohash.org/${contact.name}`" alt="" srcset="">
-    <pre>{{ contact }}</pre>
-    <hr />
     <router-link :to="`/contact/${contact._id}`">{{contact.name}} profile</router-link>
   </section>
 </template>
@@ -11,7 +9,6 @@
 export default {
   props: ["contact"],
   methods: {
-    
   },
 };
 </script>

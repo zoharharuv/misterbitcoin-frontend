@@ -1,29 +1,40 @@
 <template>
-  <section class="statistics-page">
-    <h1>This is an statistics page</h1>
-    <div class="map" ref="elMap"></div>
-    <input type="text" ref="elTxt" />
-    <button @click="goThere">Go There</button>
+  <section class="statistics-page flex column">
+    <div class="chart-container flex column" v-if="marketprice">
+      <h2>{{ marketprice.name }}</h2>
+      <h3>{{ marketprice.description }}</h3>
+      <line-chart v-if="marketprice" :data="marketprice" />
+    </div>
+    <div class="chart-container" v-if="confirmedtransactions">
+      <h2>{{ confirmedtransactions.name }}</h2>
+      <h3>{{ confirmedtransactions.description }}</h3>
+      <line-chart v-if="confirmedtransactions" :data="confirmedtransactions" />
+    </div>
   </section>
 </template>
 
 <script>
+import LineChart from "@/components/chart";
+import bitcoinService from "../services/bitcoin.service";
 export default {
   data() {
-    return {};
+    return {
+      marketprice: null,
+      confirmedtransactions: null,
+    };
   },
-  created() {},
-  mounted() {
-    console.log("Mounted: this.$refs", this.$refs);
-    const { elTxt } = this.$refs;
-    elTxt.focus();
+  created() {
+    this.loadChartsData();
   },
   methods: {
-    goThere() {
-      const { elMap } = this.$refs;
-      console.log("Going", elMap);
-      this.elType = this.elType === "h1" ? "h3" : "h1";
+    async loadChartsData() {
+      this.marketprice = await bitcoinService.getMarketPrice();
+      this.confirmedtransactions =
+        await bitcoinService.getConfirmedTransactions();
     },
+  },
+  components: {
+    LineChart,
   },
 };
 </script>
