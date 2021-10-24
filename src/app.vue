@@ -5,7 +5,7 @@
       @logout="logout"
       @openLoginModal="openLoginModal"
     />
-    <login-modal v-if="showLoginModal" @login="login" />
+    <login-modal v-if="showLoginModal" @login="login" @closeLoginModal="closeLoginModal"/>
     <router-view />
   </section>
 </template>
@@ -37,6 +37,9 @@ export default {
     },
     openLoginModal() {
       this.showLoginModal = true;
+    },
+    closeLoginModal() {
+      this.showLoginModal = false;
     },
     async login(creds) {
       try {

@@ -1,6 +1,9 @@
 .contact-preview{
     img{
-        width: 100px;
-        height: 100px;
+        background-color: darken($color: $clr1, $amount: 3);
+        border: 1px solid white;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
     }
 }

@@ -18,6 +18,15 @@ input{
     cursor: pointer;
     background-color: transparent;
     font-size: 1rem;
+    border-radius: 4px;
+}
+
+input{
+    color: $clr1;
+    background-color: $grey;
+    &::placeholder{
+        color: $clr1;
+    }
 }
 
 input{

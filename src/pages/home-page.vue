@@ -6,11 +6,11 @@
     <div class="user-details">
       <h2>Welcome {{ user.fullname }}!</h2>
       <h3>Coins: {{ user.coins }}$</h3>
-      <h4>BTC value: {{ btcCoins }}</h4>
+      <h4>BTC value: {{ btcCoins.toFixed(6) }}</h4>
       <move-list :moves="moves" />
     </div>
     <div v-if="rate" class="bitcoin-rate">
-      <h3>Current rate: 1$ = {{ rate }} BTC</h3>
+      <h3>Current rate: 1$ = {{ rate.toFixed(6) }} BTC</h3>
     </div>
   </section>
   <section v-else class="flex center-center">

@@ -2,3 +2,43 @@
     font-family: sofia-regular;
     src: url("../assets/fonts/sofia/SofiaProRegularAz.otf");
 }
+
+// FAS FONTS
+
+@font-face {
+    font-family: awe-reg;
+    src: url("../assets/fonts/font-awesome/fa-regular-400.ttf");
+}
+
+@font-face {
+    font-family: awe-solid;
+    src: url("../assets/fonts/font-awesome/fa-solid-900.ttf");
+}
+
+// FAS ICONS
+.far::before {
+    font-family: awe-reg;
+}
+
+.fas::before {
+    font-family: awe-solid;
+}
+
+.far.fa-clock::before {
+    content: "\f017";
+}
+
+.fas.fa-sign-out-alt::before {
+    content: "\f2f5";
+}
+
+.fas.fa-sign-in-alt::before {
+    content: "\f2f6";
+}
+
+.far.fa-address-book::before {
+    content: "\f2b9";
+}
+.far.fa-chart-bar::before {
+    content: "\f080";
+}

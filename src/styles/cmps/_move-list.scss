@@ -1,8 +1,13 @@
-.move-list{
-    ul{
+.move-list {
+    ul {
         text-align: center;
         outline: 1px solid $grey;
         padding: 15px 30px;
         gap: 15px;
+        border-radius: 10px;
+        background: lighten($color: $clr1, $amount: 20);
+    }
+    .move-preview {
+        font-size: 1.2rem;
     }
 }

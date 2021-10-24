@@ -1,5 +1,6 @@
 <template>
-  <section class="signup-page flex column gap padding-top">
+  <section class="signup-page flex column gap align-center padding-top">
+    <h2>Signup today:</h2>
     <form class="flex column align-center gap" @submit.prevent="signup">
       <input v-model="user.username" type="text" placeholder="Username" />
       <input v-model="user.fullname" type="text" placeholder="Fullname" />

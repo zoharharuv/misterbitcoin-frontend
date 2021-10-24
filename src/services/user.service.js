@@ -19,14 +19,15 @@ export default {
     addMove
 };
 
-async function getTransactions(contact = null, moves = null) {
+async function getTransactions(contact = null, numOfMoves = null) {
     const KEY = 'transaction';
     const user = await getLoggedInUser()
+    if (!user) return;
     var transactions = await DbService.query(KEY);
     transactions = transactions.filter(move => move.fromId === user._id)
     if (contact) transactions = transactions.filter(move => move.toId === contact._id)
-    if (moves) {
-        const start = Math.max(transactions.length - 3, 0)
+    if (numOfMoves) {
+        const start = Math.max(transactions.length - numOfMoves, 0)
         transactions = transactions.slice(start, transactions.length)
     }
     return transactions.reverse()
@@ -48,7 +49,8 @@ async function addMove(contact, amount) {
     transactions.push(move)
     await DbService.post(KEY, move);
     user.coins -= amount;
-    save(user)
+    await save(user)
+    Utils.storeToStorage('loggedInUser', user);
     return transactions;
 }
 
