@@ -6,6 +6,8 @@ import statisticsPage from '../pages/statistics-page.vue'
 import signupPage from '../pages/signup-page.vue'
 import contactDetails from '../pages/contact-details.vue'
 import contactApp from '../pages/contact-app.vue';
+import notFound from '../pages/not-found.vue';
+
 
 import contactEdit from '../components/contact-edit.vue';
 
@@ -17,7 +19,7 @@ const routes = [
     name: 'Home',
     component: homePage
   },
- 
+
   {
     path: '/statistics',
     name: 'Statistics',
@@ -29,20 +31,24 @@ const routes = [
     component: signupPage
   },
   {
+    path: '/contact',
+    name: 'Contact',
+    component: contactApp
+  },
+  {
+    path: '/contact/edit/:contactId?',
+    name: 'ContactEdit',
+    component: contactEdit
+  },
+  {
     path: '/contact/:contactId',
     name: 'ContactDetails',
     component: contactDetails,
   },
   {
-    path: '/contact/edit/:contactId',
-    name: 'ContactEdit',
-    component: contactEdit
+    path: '*',
+    component: notFound
   },
-  {
-    path: '/contact',
-    name: 'Contact',
-    component: contactApp
-  }
 ]
 
 const router = new VueRouter({

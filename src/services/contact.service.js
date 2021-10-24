@@ -43,7 +43,7 @@ function getEmptyContact() {
     return {
         name: '',
         email: '',
-        phone: '000'
+        phone: ''
     }
 }
 

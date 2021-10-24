@@ -1,7 +1,7 @@
 <template>
-  <section class="move-list flex column gap">
-    <h3>Your moves:</h3>
-    <ul class="flex column clean gap">
+  <section v-if="moves" class="move-list flex column">
+    <ul v-if="moves.length !== 0" class="flex column clean">
+    <h3 >Last moves:</h3>
       <li
         class="flex column center-center"
         v-for="(move, idx) in moves"
@@ -17,11 +17,8 @@
 
 <script>
 export default {
-  props: ["moves"],
-  data() {
-    return {};
+  props: {
+    moves: Array,
   },
-  async created() {},
-  methods: {},
 };
 </script>

@@ -2,25 +2,27 @@
   <section class="statistics-page flex column">
     <div class="chart-container flex column" v-if="marketprice">
       <h2>{{ marketprice.name }}</h2>
-      <h3>{{ marketprice.description }}</h3>
+      <h4>{{ marketprice.description }}</h4>
       <line-chart v-if="marketprice" :data="marketprice" />
     </div>
-    <div class="chart-container" v-if="confirmedtransactions">
-      <h2>{{ confirmedtransactions.name }}</h2>
-      <h3>{{ confirmedtransactions.description }}</h3>
-      <line-chart v-if="confirmedtransactions" :data="confirmedtransactions" />
+    <div class="chart-container" v-if="transactions">
+      <h2>{{ transactions.name }}</h2>
+      <h4>{{ transactions.description }}</h4>
+      <line-chart v-if="transactions" :data="transactions" />
     </div>
   </section>
 </template>
 
 <script>
-import LineChart from "@/components/chart";
 import bitcoinService from "../services/bitcoin.service";
+
+import LineChart from "@/components/chart";
+
 export default {
   data() {
     return {
       marketprice: null,
-      confirmedtransactions: null,
+      transactions: null,
     };
   },
   created() {
@@ -29,8 +31,7 @@ export default {
   methods: {
     async loadChartsData() {
       this.marketprice = await bitcoinService.getMarketPrice();
-      this.confirmedtransactions =
-        await bitcoinService.getConfirmedTransactions();
+      this.transactions = await bitcoinService.getConfirmedTransactions();
     },
   },
   components: {

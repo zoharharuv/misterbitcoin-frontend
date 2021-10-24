@@ -1,13 +1,16 @@
 <template>
-  <ul class="contact-list clean flex align-center justify-center column">
-    <li class="contact-container flex space-between align-center" v-for="(contact, idx) in contacts" :key="idx">
+  <section class="contact-list clean flex align-center justify-center column">
+    <div
+      class="contact-container flex space-between align-center"
+      v-for="(contact, idx) in contacts"
+      :key="idx"
+    >
       <contact-preview :contact="contact" />
       <div class="contact-actions flex gap align-center">
-        <button @click="printContact(contact, $event)">Print Log</button>
         <button @click="remove(contact._id)">Remove</button>
       </div>
-    </li>
-  </ul>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -18,10 +21,6 @@ import contactPreview from "./contact-preview.vue";
 export default {
   props: ["contacts"],
   methods: {
-    printContact(contact, ev) {
-      console.log(contact, ev);
-      showUserMsg("Printed", "danger");
-    },
     remove(id) {
       this.$emit("remove", id);
       showUserMsg("Removed");

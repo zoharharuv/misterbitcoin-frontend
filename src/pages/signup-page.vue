@@ -1,7 +1,9 @@
 <template>
-  <section class="signup-page flex column gap">
+  <section class="signup-page flex column gap padding-top">
     <form class="flex column align-center gap" @submit.prevent="signup">
-      <input v-model="name" type="text" placeholder="name" />
+      <input v-model="user.username" type="text" placeholder="Username" />
+      <input v-model="user.fullname" type="text" placeholder="Fullname" />
+      <input v-model="user.password" type="password" placeholder="Password" />
       <button>signup!</button>
     </form>
   </section>
@@ -14,16 +16,17 @@ import eventBus from "../services/eventBus.service.js";
 export default {
   data() {
     return {
-      name: "",
+      user: {
+        username: "",
+        fullname: "",
+        password: "",
+      },
     };
   },
   created() {},
   methods: {
-    signup() {
-      this.addUser();
-    },
-    async addUser() {
-      await userService.signup(this.name);
+    async signup() {
+      await userService.save(this.user);
       eventBus.$emit("userSigned", this.contactToEdit);
       this.$router.push("/");
     },

@@ -6,11 +6,13 @@ export default {
   data() {
     return {
       chartData: {
-        labels: this.data.values.map(v => new Date(v.x * 1000).toLocaleDateString("he-IL")),
+        labels: this.data.values.map((v) =>
+          new Date(v.x * 1000).toLocaleDateString("he-IL")
+        ),
         datasets: [
           {
             label: this.data.unit,
-            data: [...this.data.values],
+            data: this.data.values,
             fill: false,
             borderColor: "#2554FF",
             backgroundColor: "#2554FF",
@@ -48,7 +50,7 @@ export default {
   },
   computed: {
     labelsToShow() {
-      return this.data.values.map
+      return this.data.values.map;
     },
   },
   mounted() {

@@ -1,10 +1,8 @@
 <template>
-  <section class="transfer-fund flex column gap">
-    <form @submit.prevent="transfer">
-      <input v-model="coins" type="number" name="coins" />
-      <button >Transfer BTCs</button>
-    </form>
-  </section>
+  <form @submit.prevent="transfer" class="transfer-fund flex column gap">
+    <input v-model="coins" type="number" name="coins" />
+    <button>Transfer coins</button>
+  </form>
 </template>
 
 <script>
@@ -15,7 +13,6 @@ export default {
       coins: 1,
     };
   },
-  async created() {},
   methods: {
     transfer() {
       this.transferCoins(this.coins);

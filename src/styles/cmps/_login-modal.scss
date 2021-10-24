@@ -1,0 +1,10 @@
+.login-modal {
+    background-color: $darkBlue;
+    padding: 30px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}

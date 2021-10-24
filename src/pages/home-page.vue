@@ -1,14 +1,20 @@
 <template>
-  <section class="home-page flex column justify-center align-center">
-    <div v-if="user" class="user-details">
-      <h2>Welcome {{ user.name }}!</h2>
-      <h3>Coins: {{ user.coins }}</h3>
-      <h4>BTC: {{ btcCoins }}</h4>
+  <section
+    v-if="user"
+    class="home-page flex column justify-center align-center"
+  >
+    <div class="user-details">
+      <h2>Welcome {{ user.fullname }}!</h2>
+      <h3>Coins: {{ user.coins }}$</h3>
+      <h4>BTC value: {{ btcCoins }}</h4>
       <move-list :moves="moves" />
     </div>
     <div v-if="rate" class="bitcoin-rate">
-      <h2>Current rate: 1$ = {{ rate }} BTC</h2>
+      <h3>Current rate: 1$ = {{ rate }} BTC</h3>
     </div>
+  </section>
+  <section v-else class="flex center-center">
+    <h1>Login or signup first!</h1>
   </section>
 </template>
 
@@ -16,6 +22,7 @@
 import userService from "../services/user.service";
 import eventBus from "../services/eventBus.service.js";
 import bitcoinService from "../services/bitcoin.service";
+
 import MoveList from "../components/move-list";
 
 export default {
@@ -27,17 +34,18 @@ export default {
     };
   },
   async created() {
-    this.user = await userService.getUser();
-    if (!this.user) {
-      this.$router.push("/signup");
-      return;
+    this.user = await userService.getLoggedInUser();
+    if (this.user) {
+      await this.loadMoves();
     }
-    this.rate = await bitcoinService.getRate();
-    await this.loadMoves();
     eventBus.$on("logout", () => (this.user = null));
+    eventBus.$on("login", async (loggedUser) => {
+      this.user = loggedUser;
+    });
   },
   methods: {
     async loadMoves() {
+      this.rate = await bitcoinService.getRate();
       this.moves = await userService.getTransactions(null, 3);
     },
   },

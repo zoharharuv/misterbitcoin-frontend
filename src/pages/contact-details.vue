@@ -1,7 +1,8 @@
 <template>
   <section class="contact-details flex column gap align-center" v-if="contact">
     <h1>{{ contact.name }} profile</h1>
-    <pre>{{ contact }}</pre>
+    <small>Email: {{ contact.email }}</small>
+    <small>Phone: {{ contact.phone }}</small>
     <transfer-fund :transferCoins="transferCoins" />
     <move-list :moves="moves" />
     <div class="contact-links flex gap">
@@ -16,10 +17,10 @@
 <script>
 import contactService from "../services/contact.service";
 import { showUserMsg } from "../services/eventBus.service";
+import userService from "../services/user.service";
 
 import TransferFund from "../components/transfer-fund";
 import MoveList from "../components/move-list";
-import userService from "../services/user.service";
 
 export default {
   components: {
@@ -36,7 +37,6 @@ export default {
     await this.loadContact();
     await this.loadMoves();
   },
-  destroyed() {},
   methods: {
     async loadContact() {
       try {

@@ -1,14 +1,14 @@
 <template>
-  <section class="contact-app flex column align-center">
+  <section class="contact-app flex column align-center gap">
     <contact-filter @filterList="setFilter" />
     <contact-list @remove="removeContact" :contacts="contactsToShow" />
+    <router-link to="/contact/edit">Add contact +</router-link>
     <router-view />
   </section>
 </template>
 
 <script>
 import contactService from "../services/contact.service.js";
-import eventBus from "../services/eventBus.service.js";
 
 import contactList from "../components/contact-list.vue";
 import contactEdit from "../components/contact-edit.vue";
@@ -35,10 +35,6 @@ export default {
   },
 
   methods: {
-    async saveContact(contact) {
-      await contactService.save(contact);
-      this.$router.push("/contact");
-    },
     async removeContact(id) {
       await contactService.remove(id);
       var idx = this.contacts.findIndex((contact) => contact._id === id);
@@ -53,7 +49,6 @@ export default {
   },
   async created() {
     this.loadContacts();
-    eventBus.$on("contactSaved", this.saveContact);
   },
   components: {
     contactList,
